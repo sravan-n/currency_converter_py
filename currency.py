@@ -23,3 +23,34 @@ def before_space(s):
     Parameter s: the string to slice
     Precondition: s is a string with at least one space in it
     """
+
+    assert type(s) == str, repr(s) + ' is not a string'
+    assert introcs.count_str(s, ' ') >= 1, repr(s) + ' has no space in it'
+
+    # Find the index of the first space in the string
+    pos = introcs.find_str(s, ' ')
+    # Compute the substring from the start to first space
+    result = s[:pos]
+    # Return the result
+    return result
+
+
+def after_space(s):
+    """
+    Returns the substring of s after the first space
+
+    Example: after_space('Hello World') returns 'World'
+
+    Parameter s: the string to slice
+    Precondition: s is a string with at least one space in it
+    """
+
+    assert type(s) == str, repr(s) + ' is not a string'
+    assert introcs.count_str(s, ' ') >= 1, repr(s) + ' has no space in it'
+
+    # Find the index of the first space in the string
+    pos = introcs.find_str(s, ' ')
+    # Compute the substring after the first space
+    result = s[pos+1:]
+    # Return the result
+    return result

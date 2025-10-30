@@ -15,6 +15,24 @@ def test_before_space():
     """Test procedure for before_space"""
     
     print('Testing before_space')
+    
+    result = currency.before_space('Hello World')
+    introcs.assert_equals('Hello', result)
+
+    result = currency.before_space(' Hello World')
+    introcs.assert_equals('', result)
+
+    result = currency.before_space('Hello World Test')
+    introcs.assert_equals('Hello', result)
+
+    result  = currency.before_space('Hello ')
+    introcs.assert_equals('Hello', result)
+
+    result = currency.before_space(' ')
+    introcs.assert_equals('', result)
+
+    result = currency.before_space('Hello   World')
+    introcs.assert_equals('Hello', result)
 
 
 def test_after_space(): 
@@ -22,7 +40,22 @@ def test_after_space():
     
     print('Testing after_space')
     
+    result = currency.after_space('Hello World')
+    introcs.assert_equals('World', result)
+
+    result = currency.after_space(' Hello World')
+    introcs.assert_equals('Hello World', result)
+
+    result = currency.after_space('Hello ')
+    introcs.assert_equals('', result)
+
+    result = currency.after_space(' Hello')
+    introcs.assert_equals('Hello', result)
     
+    result = currency.after_space('Hello  World')
+    introcs.assert_equals(' World', result)
+
+
 def test_first_inside_quotes():
     """Test procedure for first_inside_quotes"""
     
