@@ -82,3 +82,48 @@ def first_inside_quotes(s):
     result = s[pos1+1:pos2]
     # Retun the substring
     return result
+
+
+def get_src(json):
+    """
+    Returns the src value in the response to a currency query.
+
+    Given a JSON string provided by the web service, this function returns the string
+    inside string quotes (") immediately following the substring '"src"'. For example,
+    if the json is
+    
+        '{"success": true, "src": "2 United States Dollars", "dst": "1.772814 Euros", "error": ""}'
+
+    then this function returns '2 United States Dollars' (not '"2 United States Dollars"'). 
+    On the other hand if the json is 
+    
+        '{"success":false,"src":"","dst":"","error":"Source currency code is invalid."}'
+
+    then this function returns the empty string.
+
+    The web server does NOT specify the number of spaces after the colons. The JSON
+    
+        '{"success":true, "src":"2 United States Dollars", "dst":"1.772814 Euros", "error":""}'
+    
+    is also valid (in addition to the examples above).
+
+    Parameter json: a json string to parse
+    Precondition: json a string provided by the web service (ONLY enforce the type)
+    """
+
+    assert type(json) == str, repr(json) + ' is not a string'
+
+    # Find the position of "src"
+    pos = introcs.find_str(json, '"src"')
+    # Slice the string from "src"
+    s = json[pos:]
+    # Find the position of the : after src
+    pos = introcs.find_str(s, ':')
+    # Slice the string from :
+    s = s[pos+1:]
+    # Compute the substring in first double quotes from sliced string
+    result = first_inside_quotes(s)
+    # Return the result
+    return result
+
+    
