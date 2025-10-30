@@ -61,6 +61,18 @@ def test_first_inside_quotes():
     
     print('Testing first_inside_quotes')
 
+    result = currency.first_inside_quotes('A "B C" D')
+    introcs.assert_equals('B C', result)
+
+    result = currency.first_inside_quotes('"A B C D"')
+    introcs.assert_equals('A B C D', result)
+
+    result = currency.first_inside_quotes('A "B C" D "E F" G')
+    introcs.assert_equals('B C', result)
+
+    result = currency.first_inside_quotes('A""B')
+    introcs.assert_equals('', result)
+
 
 def test_get_src():
     """Test procedure for get_src"""

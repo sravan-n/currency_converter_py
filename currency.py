@@ -54,3 +54,31 @@ def after_space(s):
     result = s[pos+1:]
     # Return the result
     return result
+
+
+def first_inside_quotes(s):
+    """
+    Returns the first substring of s between two (double) quote characters
+
+    Note that the double quotes must be part of the string.  So "Hello World" is a 
+    precondition violation, since there are no double quotes inside the string.
+
+    Example: first_inside_quotes('A "B C" D') returns 'B C'
+    Example: first_inside_quotes('A "B C" D "E F" G') returns 'B C', because it only 
+    picks the first such substring.
+
+    Parameter s: a string to search
+    Precondition: s is a string with at least two (double) quote characters inside
+    """
+
+    assert type(s) == str, repr(s) + ' is not a string'
+    assert introcs.count_str(s, '"') >= 2, repr(s) + 'should have 2 double quotes inside'
+
+    # Find postion of first double quote
+    pos1 = introcs.find_str(s, '"')
+    # Find position of second double quote
+    pos2 = introcs.find_str(s, '"', pos1+1)
+    # Compute the substring between position 1 and 2
+    result = s[pos1+1:pos2]
+    # Retun the substring
+    return result
